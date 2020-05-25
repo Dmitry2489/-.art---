@@ -1838,6 +1838,9 @@ h4 {
     margin: 4rem auto;
     width: auto;
   }
+  .main-slider-item img{
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) {

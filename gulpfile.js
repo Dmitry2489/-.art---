@@ -13,7 +13,7 @@ gulp.task("copy-html", () => {
     .pipe(browsersync.stream());
 });
 
-gulp.task("build-js", () => {
+gulp.task("js", () => {
   return gulp.src("./src/js/main.js")
     .pipe(webpack({
       mode: 'development',

@@ -1,52 +1,52 @@
 const mask = (selector) => {
-
     let setCursorPosition = (pos, elem) => {
         elem.focus();
 
         if (elem.setSelectionRange) {
-            elem.setSelectionRange(pos, pos)
+            elem.setSelectionRange(pos, pos);
         } else if (elem.creteTextRange) {
             let range = elem.creteTextRange();
 
             range.collapse(true);
-            range.moveEnd('character', pos);
-            range.moveStart('character', pos);
+            range.moveEnd("character", pos);
+            range.moveStart("character", pos);
             range.select();
         }
     };
 
     function createMask(event) {
-
-        let matrix = '+7 (___) ___ __ __',
+        let matrix = "+7 (___) ___ __ __",
             i = 0,
-            def = matrix.replace(/\D/g, ''),
-            val = this.value.replace(/\D/g, '');
+            def = matrix.replace(/\D/g, ""),
+            val = this.value.replace(/\D/g, "");
 
         if (def.length >= val.length) {
             val = def;
         }
 
         this.value = matrix.replace(/./g, (a) => {
-
-            return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
+            return /[_\d]/.test(a) && i < val.length
+                ? val.charAt(i++)
+                : i >= val.length
+                ? ""
+                : a;
         });
 
-        if (event.type === 'blur') {
+        if (event.type === "blur") {
             if (this.value.length == 2) {
-                this.value = '';
+                this.value = "";
             }
         } else {
-            setCursorPosition(this.value.length, this)
+            setCursorPosition(this.value.length, this);
         }
     }
-        let phoneInputs = document.querySelectorAll(selector);
+    let phoneInputs = document.querySelectorAll(selector);
 
-        phoneInputs.forEach(input=>{
-            input.addEventListener('input', createMask );
-            input.addEventListener('focus', createMask );
-            input.addEventListener('blur', createMask );
-        });
-
+    phoneInputs.forEach((input) => {
+        input.addEventListener("input", createMask);
+        input.addEventListener("focus", createMask);
+        input.addEventListener("blur", createMask);
+    });
 };
 
 export default mask;
